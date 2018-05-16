@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <input type="button" value="Get Students" onclick="getStudents()" />
+    <input type="button" value="Add Student" onclick="addStudent()" />
+    <input type="button" value="Delete Student" onclick="deleteStudent()" />
+
+
+    <script type="text/javascript">
+
+        function getStudents() {
+            $.ajax({
+                url: "api/StudentsEF/",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                }
+            });
+        }
+
+        function addStudent() {
+            var newStudent = {
+                Id: 0,
+                FirstName: "Piotr",
+                LastName: "Nowicki"
+            };
+            $.ajax({
+                url: "api/StudentsEF",
+                method: "POST",
+                dataType: "json",
+                data: newStudent,
+                success: function (data) {
+                    console.info(data);
+                }
+            });
+        }
+
+        function deleteStudent() {
+            $.ajax({
+                url: "api/StudentsEF/5" + $("#studentId").val(), 
+                method: "DELETE",
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                }
+            });
+        }
+        
+
+
+
+    </script>
+</body>
+</html>
